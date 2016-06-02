@@ -15,7 +15,7 @@ restyaboard:
 postgres:
   image: postgres
   environment:
-    - POSTGRES_USER=restyaboard
+    - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=restyaboard
 ```
 
@@ -39,9 +39,8 @@ postgres:
   volumes:
     - /volume/path/postgres:/var/lib/postgresql/data
   environment:
-    - POSTGRES_USER=restyaboard
+    - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=restyaboard
-    - POSTGRES_DATABASE=restyaboard
 elasticsearch:
   image: elasticsearch
   restart: always
