@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+if [ ! -f /etc/restyaboard/config.inc.php ]; then
+  cp /usr/share/nginx/html/server/php/config.inc.php.back /etc/restyaboard/config.inc.php
+fi
 chmod -R a+w /usr/share/nginx/html/media /usr/share/nginx/html/client/img /usr/share/nginx/html/tmp/cache /etc/restyaboard/config.inc.php
 ln -sf /etc/restyaboard/config.inc.php /usr/share/nginx/html/server/php/config.inc.php
 

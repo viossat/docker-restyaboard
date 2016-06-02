@@ -25,7 +25,7 @@ RUN curl -L -o /tmp/restyaboard.zip https://github.com/RestyaPlatform/board/rele
 	&& rm /tmp/restyaboard.zip \
 	&& cp /usr/share/nginx/html/restyaboard.conf /etc/nginx/sites-enabled/default \
 	&& mkdir -p /etc/restyaboard \
-	&& mv /usr/share/nginx/html/server/php/config.inc.php /etc/restyaboard
+	&& mv /usr/share/nginx/html/server/php/config.inc.php /usr/share/nginx/html/server/php/config.inc.php.back
 
 RUN { \
 		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/indexing_to_elasticsearch.sh'; \
