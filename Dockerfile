@@ -14,6 +14,7 @@ RUN echo "postfix postfix/mailname string localhost" | debconf-set-selections \
 		php5-fpm \
 		php5-imagick \
 		php5-imap \
+		php5-ldap \
 		php5-pgsql \
 		postfix \
 		postgresql-client \
