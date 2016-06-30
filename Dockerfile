@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Mathieu Viossat <mathieu@viossat.fr>
 
-ENV RESTYABOARD_VERSION 0.2.1
+ENV RESTYABOARD_VERSION 0.3
 
 RUN echo "postfix postfix/mailname string localhost" | debconf-set-selections \
 	&& echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections \
@@ -12,6 +12,7 @@ RUN echo "postfix postfix/mailname string localhost" | debconf-set-selections \
 		nginx \
 		php5-curl \
 		php5-fpm \
+		php5-geoip \
 		php5-imagick \
 		php5-imap \
 		php5-ldap \
