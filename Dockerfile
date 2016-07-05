@@ -38,7 +38,7 @@ RUN { \
 		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/card_due_notification.sh'; \
 	} > /var/spool/cron/crontabs/root
 
-COPY start.sh /usr/local/bin
+COPY run.sh /usr/local/bin
 
 VOLUME /etc/restyaboard /usr/share/nginx/html/media
 
@@ -46,4 +46,4 @@ WORKDIR /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD ["start.sh"]
+CMD ["run.sh"]
