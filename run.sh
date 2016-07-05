@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 if [ ! -f /etc/restyaboard/config.inc.php ]; then
   cp /usr/share/nginx/html/server/php/config.inc.php.back /etc/restyaboard/config.inc.php
@@ -37,5 +37,5 @@ service php5-fpm start
 service nginx start
 service cron start
 
-touch /var/log/nginx/access.log /var/log/nginx/error.log
-exec tail -f /var/log/nginx/access.log /var/log/nginx/error.log
+chown -R www-data /var/log/nginx && chmod -R u+rw /var/log/nginx
+exec tail -F -n 0 /var/log/nginx/access.log /var/log/nginx/error.log 2> /dev/null
