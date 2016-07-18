@@ -1,7 +1,7 @@
 # viossat/restyaboard
 
-Open source Kanban board.
-[Official website](https://restya.com/board) and [demo](https://restya.com/board/demo).
+Open source, Trello like Kanban board, based on Restya platform.
+http://restya.com/board
 
 ## `docker-compose.yml`
 
