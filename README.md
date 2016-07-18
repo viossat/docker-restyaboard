@@ -3,48 +3,35 @@
 Open source Kanban board.
 [Official website](https://restya.com/board) and [demo](https://restya.com/board/demo).
 
-## Minimal `docker-compose.yml`
+## `docker-compose.yml`
 
 ```
 restyaboard:
   image: viossat/restyaboard
   ports:
     - "80:80"
-  links:
-    - postgres
-postgres:
-  image: postgres
-  environment:
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=restyaboard
-```
-
-## Complete `docker-compose.yml` (Elasticsearch, persistent volumes, ...)
-
-```
-restyaboard:
-  image: viossat/restyaboard
-  restart: always
-  ports:
-    - "80:80"
-  volumes:
+  volumes: # optional
     - /volume/path/config:/etc/restyaboard
     - /volume/path/media:/var/www/html/media
   links:
     - postgres
-    - elasticsearch
+    - elasticsearch # optional
+  environment:
+    - DB_HOST=postgres
+    - DB_PORT=5432 # optional, default: 5432
+    - DB_USER=restyaboard
+    - DB_PASSWORD=restyaboard # optional, default: DB_USER
+    - DB_NAME=restyaboard # optional, default: restyaboard
 postgres:
   image: postgres
-  restart: always
-  volumes:
+  volumes: # optional
     - /volume/path/postgres:/var/lib/postgresql/data
   environment:
-    - POSTGRES_USER=postgres
+    - POSTGRES_USER=restyaboard
     - POSTGRES_PASSWORD=restyaboard
-elasticsearch:
+elasticsearch: # optional
   image: elasticsearch
-  restart: always
-  volumes:
+  volumes: # optional
     - /volume/path/elasticsearch:/usr/share/elasticsearch/data
 ```
 
