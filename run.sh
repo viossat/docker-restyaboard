@@ -7,11 +7,10 @@ export DB_USER=${DB_USER:-${POSTGRES_ENV_POSTGRES_USER:-$DB_USER}}
 export DB_PASSWORD=${DB_PASSWORD:-${POSTGRES_ENV_POSTGRES_PASSWORD:-$DB_USER}}
 export DB_NAME=${DB_NAME:-${POSTGRES_ENV_POSTGRES_DB:-restyaboard}}
 
-if [ ! -f /etc/restyaboard/config.inc.php ]; then
-  cp /usr/share/nginx/html/server/php/config.inc.php.back /etc/restyaboard/config.inc.php
+if [ ! -f /usr/share/nginx/html/server/php/config.inc.php ]; then
+  cp /usr/share/nginx/html/server/php/config.inc.php.back /usr/share/nginx/html/server/php/config.inc.php
 fi
-chmod -R a+w /usr/share/nginx/html/media /usr/share/nginx/html/client/img /usr/share/nginx/html/tmp/cache /etc/restyaboard/config.inc.php
-ln -sf /etc/restyaboard/config.inc.php /usr/share/nginx/html/server/php/config.inc.php
+chmod -R a+w /usr/share/nginx/html/media /usr/share/nginx/html/client/img /usr/share/nginx/html/tmp/cache /usr/share/nginx/html/server/php/config.inc.php
 
 sed -i "s/^.*'R_DB_HOST'.*$/define('R_DB_HOST', '${DB_HOST}');/g" /usr/share/nginx/html/server/php/config.inc.php
 sed -i "s/^.*'R_DB_PORT'.*$/define('R_DB_PORT', '${DB_PORT}');/g" /usr/share/nginx/html/server/php/config.inc.php

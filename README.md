@@ -11,7 +11,6 @@ restyaboard:
   ports:
     - "80:80"
   volumes: # optional
-    - /volume/path/config:/etc/restyaboard
     - /volume/path/media:/var/www/html/media
   links:
     - postgres
