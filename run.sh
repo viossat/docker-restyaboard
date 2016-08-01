@@ -41,7 +41,7 @@ create_database() {
 
 psql -d $DB_NAME -c "\q"
 if [ "$?" = 0 ]; then
-  N_TABLES=$(psql -d $DB_NAME -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '$DB_NAME'" -A | sed "2q;d")
+  N_TABLES=$(psql -d $DB_NAME -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_catalog = '$DB_NAME' AND table_schema = 'public'" -A | sed "2q;d")
   if [ "$N_TABLES" = "0" ]; then
     dropdb $DB_NAME
     create_database
