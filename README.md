@@ -1,3 +1,5 @@
+**Warning:** This image is not maintained anymore. I personally switched to [Wekan](https://wekan.io/).
+
 # viossat/restyaboard
 
 Open source, Trello like Kanban board, based on Restya platform.
