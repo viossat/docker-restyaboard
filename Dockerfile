@@ -27,15 +27,16 @@ RUN curl -L -o /tmp/restyaboard.zip https://github.com/RestyaPlatform/board/rele
 	&& rm /tmp/restyaboard.zip \
 	&& cp /usr/share/nginx/html/restyaboard.conf /etc/nginx/sites-enabled/default \
 	&& mkdir -p /etc/restyaboard \
-	&& mv /usr/share/nginx/html/server/php/config.inc.php /usr/share/nginx/html/server/php/config.inc.php.back
+	&& mv /usr/share/nginx/html/server/php/config.inc.php /usr/share/nginx/html/server/php/config.inc.php.back \
+	&& chmod 755 /usr/share/nginx/html/server/php/shell/*.sh
 
 RUN { \
-		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/indexing_to_elasticsearch.sh'; \
-		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/instant_email_notification.sh'; \
-		echo '0 * * * * php /usr/share/nginx/htmlserver/php/shell/periodic_email_notification.sh'; \
-		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/imap.sh'; \
-		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/webhook.sh'; \
-		echo '* * * * * php /usr/share/nginx/htmlserver/php/shell/card_due_notification.sh'; \
+		echo '* * * * * /usr/share/nginx/htmlserver/php/shell/indexing_to_elasticsearch.sh'; \
+		echo '* * * * * /usr/share/nginx/htmlserver/php/shell/instant_email_notification.sh'; \
+		echo '0 * * * * /usr/share/nginx/htmlserver/php/shell/periodic_email_notification.sh'; \
+		echo '* * * * * /usr/share/nginx/htmlserver/php/shell/imap.sh'; \
+		echo '* * * * * /usr/share/nginx/htmlserver/php/shell/webhook.sh'; \
+		echo '* * * * * /usr/share/nginx/htmlserver/php/shell/card_due_notification.sh'; \
 	} > /var/spool/cron/crontabs/root
 
 COPY run.sh /usr/local/bin
